@@ -4,12 +4,12 @@ import java.io.*;
 public class Save {
 
 	private String fileName;
-	private ArrayList<String> entries;
+	private ArrayList<Expense> entries;
 	private Scanner scan;
 
 	public Save (String fileName) throws FileNotFoundException {
 		this.fileName = fileName;
-		entries = new ArrayList<String>();
+		entries = new ArrayList<Expense>();
 
 		File saveFile = new File(fileName);
 		scan = new Scanner(saveFile);
@@ -19,7 +19,7 @@ public class Save {
 		String line = "";
 		while(scan.hasNextLine()){
 			line = scan.nextLine();
-			entries.add(line);
+			entries.add(new Expense(line));
 		}		
 	}
 
@@ -33,16 +33,20 @@ public class Save {
 		out.close();
 	}
 
-	public String getEntry (int n) {
+	public Expense getEntry (int n) {
 		return entries.get(n);
 	}
 
-	public void setEntry (int n, String newEntry) {
-		String entry = entries.get(n);
+	public void setEntry (int n, Expense newEntry) {
+		Expense entry = entries.get(n);
 		entry = newEntry;	
 	}
 
 	public void addEntry (String entry) {
+		entries.add(new Expense(entry));
+	}
+
+	public void addEntry (Expense entry) {
 		entries.add(entry);
 	}
 
