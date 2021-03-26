@@ -28,7 +28,7 @@ public static void main(String[] args) {
 //	BELOW = JAVA GUI 
 JFrame f=new JFrame();
 f.setTitle("Java Swing Expense Tracker");
-f.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\swick\\Desktop\\download.jpg"));
+// f.setIconImage(Toolkit.getDefaultToolkit().getImage("")); APP ICON / FAVICON To be set
 f.getContentPane().setBackground(Color.DARK_GRAY);
 f.getContentPane().setForeground(Color.BLACK);
           
