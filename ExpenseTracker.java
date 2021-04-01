@@ -1,6 +1,3 @@
-package cm;
-
-
 import javax.swing.*;
 import java.util.Scanner;
 import java.awt.event.ActionListener;
@@ -11,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;  
+import java.util.*;
 public class ExpenseTracker {
 	private static JTextField Expense_Input_Field;  
 	private static JTextField txtType;
@@ -45,15 +43,11 @@ public class ExpenseTracker {
 		Submit_Button.setBounds(251, 69, 85, 21);
 		f.getContentPane().add(Submit_Button);
 
-		JList list_1 = new JList();
+		String expenseList[] = {"ONe", "Two"};
+		JList list_1 = new JList<>(expenseList);
 		list_1.setBorder(new LineBorder(Color.RED));
-		list_1.setForeground(Color.WHITE);
-		list_1.setBounds(285, 303, -243, -175);
+		list_1.setBounds(45, 161, 291, 215);
 		f.getContentPane().add(list_1);
-
-		JTextPane ExpensePanel = new JTextPane();
-		ExpensePanel.setBounds(45, 161, 291, 215);
-		f.getContentPane().add(ExpensePanel);
 
 		txtType = new JTextField();
 		txtType.setToolTipText("Expense Type");
