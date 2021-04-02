@@ -10,19 +10,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;  
 import java.util.*;
 public class ExpenseTracker {
+
 	private static JTextField Expense_Input_Field;  
 	private static JTextField txtType;
+
 	public static void main(String[] args) {  
+
+		Save save = new Save("savefile.txt"); 
+		save.getFromFile();
 		
 		String input1 = null;
 		String input2 = null;
 		String operator = null;
 		
 		String finalAnswer;
-		
-		
-		
-		
+
 		//	BELOW = JAVA GUI 
 		JFrame f=new JFrame();
 		f.setTitle("Java Swing Expense Tracker");
@@ -43,8 +45,8 @@ public class ExpenseTracker {
 		Submit_Button.setBounds(251, 69, 85, 21);
 		f.getContentPane().add(Submit_Button);
 
-		String expenseList[] = {"ONe", "Two"};
-		JList list_1 = new JList<>(expenseList);
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		JList<String> list_1 = new JList<String>(listModel);
 		list_1.setBorder(new LineBorder(Color.RED));
 		list_1.setBounds(45, 161, 291, 215);
 		f.getContentPane().add(list_1);
