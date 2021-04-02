@@ -9,14 +9,16 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;  
 import java.util.*;
+import java.io.*;
 public class ExpenseTracker {
 
 	private static JTextField Expense_Input_Field;  
 	private static JTextField txtType;
+	private static Save save;
 
-	public static void main(String[] args) {  
+	public static void main(String[] args) throws FileNotFoundException {  
 
-		Save save = new Save("savefile.txt"); 
+		save = new Save("example_save.txt"); 
 		save.getFromFile();
 		
 		String input1 = null;
@@ -43,10 +45,18 @@ public class ExpenseTracker {
 		Expense_Input_Field.setColumns(10);
 		JButton Submit_Button = new JButton("Submit");
 		Submit_Button.setBounds(251, 69, 85, 21);
+		Submit_Button.addActionListener(new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent a) {
+				double value = Double.parseDouble(Expense_Input_Field.getText());
+				String desc = txtType.getText();
+
+				save.addEntry(value, desc);
+			}
+		});
 		f.getContentPane().add(Submit_Button);
 
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		JList<String> list_1 = new JList<String>(listModel);
+		JList<Expense> list_1 = new JList<>(save.entries);
 		list_1.setBorder(new LineBorder(Color.RED));
 		list_1.setBounds(45, 161, 291, 215);
 		f.getContentPane().add(list_1);
@@ -70,14 +80,6 @@ public class ExpenseTracker {
 
 		f.setVisible(true);//making the frame visible  
 	}  
-
-	public void actionPerformed(ActionEvent a) {
-		
-		double input1, input2;
-		
-		
-		
-	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
