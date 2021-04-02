@@ -47,11 +47,16 @@ public class ExpenseTracker {
 		Submit_Button.setBounds(251, 69, 85, 21);
 		Submit_Button.addActionListener(new ActionListener () {
 			@Override
-			public void actionPerformed(ActionEvent a) {
+			public void actionPerformed(ActionEvent a){
 				double value = Double.parseDouble(Expense_Input_Field.getText());
 				String desc = txtType.getText();
 
 				save.addEntry(value, desc);
+				try {
+					save.saveToFile();
+				} catch (Exception e) {
+					System.out.println("Error saving to file");
+				}
 			}
 		});
 		f.getContentPane().add(Submit_Button);
