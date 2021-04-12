@@ -56,8 +56,17 @@ public class Save {
 		entries.addElement(new Expense(amount, description));
 	}
 
-	public void removeEntry (int n){
+	public void removeEntry (int n) {
 		entries.removeElementAt(n);
+	}
+
+	public double getTotal () {
+		double total = 0.f;
+		for (int i = 0; i < entries.getSize(); i++) {
+			total += entries.get(i).getAmount();	
+		}
+
+		return total;
 	}
 
 	public String toString () {

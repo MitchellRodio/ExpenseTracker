@@ -14,6 +14,7 @@ public class ExpenseTracker {
 
 	private static JTextField Expense_Input_Field;  
 	private static JTextField txtType;
+	private static JLabel totalLabel;
 	private static Save save;
 
 	public static void main(String[] args) throws FileNotFoundException {  
@@ -52,6 +53,7 @@ public class ExpenseTracker {
 				String desc = txtType.getText();
 
 				save.addEntry(value, desc);
+				totalLabel.setText(Double.toString(save.getTotal()));
 				try {
 					save.saveToFile();
 				} catch (Exception e) {
@@ -77,11 +79,12 @@ public class ExpenseTracker {
 		button.setBounds(251, 69, 85, 21);
 		f.getContentPane().add(button);
 
-		JLabel Label1 = new JLabel("Total $");
-		Label1.setBackground(Color.GRAY);
-		Label1.setForeground(Color.GRAY);
-		Label1.setBounds(55, 386, 281, 28);
-		f.getContentPane().add(Label1);
+		totalLabel = new JLabel("Total $");
+		totalLabel.setBackground(Color.GRAY);
+		totalLabel.setForeground(Color.GRAY);
+		totalLabel.setBounds(55, 386, 281, 28);
+		totalLabel.setText(Double.toString(save.getTotal()));
+		f.getContentPane().add(totalLabel);
 
 		f.setVisible(true);//making the frame visible  
 	}  
